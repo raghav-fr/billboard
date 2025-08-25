@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "892507029691",
+    "project_id": "technova-billboard",
+    "storage_bucket": "technova-billboard.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892507029691:android:9c1d033db52e22018ee99e",
+        "android_client_info": {
+          "package_name": "com.example.technova_billboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892507029691-0gn8674k2q31f7ug12dbgcekbedtd9dq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.technova_billboard",
+            "certificate_hash": "327c7759ad6a6bfe645ba70e3efe9d52a0f92ebd"
+          }
+        },
+        {
+          "client_id": "892507029691-tkj1u4at6qoesdb8ecbrnu1g5ed8hcnh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyo7t0fuzX3TVwUmfwlm525fR-L5tKKAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892507029691-tkj1u4at6qoesdb8ecbrnu1g5ed8hcnh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "892507029691-4m8p43tvbg34uov8as3248rogan4l0d6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.technovaBillboard"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

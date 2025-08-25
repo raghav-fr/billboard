@@ -1,0 +1,12 @@
+import 'package:flutter/material.dart';
+  const Color lightestGreen = Color.fromRGBO(245, 255, 228, 1);
+  const Color brightGreen = Color.fromRGBO(166, 255, 0, 1); 
+  const Color sapGreen = Color.fromRGBO(97, 162, 0, 1); 
+  const Color darkersapGreen = Color.fromRGBO(75, 115, 0, 1); 
+  const Color lightGreenForButton = Color.fromRGBO(210, 255, 126, 1); 
+  const Color lightGreenForAvatar = Color.fromRGBO(232, 255, 190, 1); 
+  const Color lightGreenForCardBG = Color.fromRGBO(249, 255, 237, 1); 
+  const Color lightGrey = Color.fromRGBO(204, 204, 204, 1);
+  const Color greyForText = Color.fromRGBO(107, 106, 111, 1);
+  const Color stopIcongreen = Color.fromRGBO(222, 255, 161, 1);
+    const Color customBlue = Color.fromRGBO(83, 40, 225, 1);
