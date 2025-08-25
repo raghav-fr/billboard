@@ -42,6 +42,7 @@ class _ReportPageState extends State<ReportPage> {
   late String formattedDateTime;
   bool isLoading = false; // 🔹 Loader state
   String? airesponse;
+  String? locresponse;
 
   String getFormattedDateTime() {
     DateTime now = DateTime.now();
@@ -57,6 +58,7 @@ class _ReportPageState extends State<ReportPage> {
     );
     WidgetsBinding.instance.addPostFrameCallback((_) async{ 
         airesponse= await  context.read<Getreportprovider>().uploadAndCheckImage(File(widget.imagePath));
+        locresponse= await  context.read<Getreportprovider>().checkLocation(widget.latitude, widget.longitude);
 
     });
   }
@@ -283,7 +285,7 @@ class _ReportPageState extends State<ReportPage> {
                     // Model Prediction
                     Container(
                       decoration: BoxDecoration(
-                        border: Border.all(width: 0.4.w, color: Colors.green),
+                        border: Border.all(width: 0.4.w, color: customBlue),
                         borderRadius: BorderRadius.circular(18),
                       ),
                       padding: EdgeInsets.symmetric(
@@ -318,7 +320,7 @@ class _ReportPageState extends State<ReportPage> {
                     // Address Box
                     Container(
                       decoration: BoxDecoration(
-                        border: Border.all(width: 0.4.w, color: Colors.red),
+                        border: Border.all(width: 0.4.w, color: customBlue),
                         borderRadius: BorderRadius.circular(18),
                       ),
                       padding: EdgeInsets.symmetric(

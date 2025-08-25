@@ -110,7 +110,7 @@ class _SpecificReportPageState extends State<SpecificReportPage> {
                     // Model Prediction
                     Container(
                       decoration: BoxDecoration(
-                        border: Border.all(width: 0.4.w, color: Colors.green),
+                        border: Border.all(width: 0.4.w, color: customBlue),
                         borderRadius: BorderRadius.circular(18),
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
@@ -142,7 +142,7 @@ class _SpecificReportPageState extends State<SpecificReportPage> {
                     // Address Box
                     Container(
                       decoration: BoxDecoration(
-                        border: Border.all(width: 0.4.w, color: Colors.red),
+                        border: Border.all(width: 0.4.w, color: customBlue),
                         borderRadius: BorderRadius.circular(18),
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),

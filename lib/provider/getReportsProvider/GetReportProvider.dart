@@ -27,7 +27,8 @@ class Getreportprovider extends ChangeNotifier {
 
   addReviewReport(String userid) async {
     reviewreports = [];
-    List<PublicReviewModel> data = await Getreportservice.fetchUserReviewReports(userid);
+    List<PublicReviewModel> data =
+        await Getreportservice.fetchUserReviewReports(userid);
     reviewreports.addAll(data);
     notifyListeners();
     print("reports added: ${reports[0].reportId}");
@@ -116,42 +117,66 @@ class Getreportprovider extends ChangeNotifier {
     }
   }
 
-
   Future<String> uploadAndCheckImage(File imageFile) async {
+    try {
+      // API endpoint
+      var uri = Uri.parse("https://2e187309b292.ngrok-free.app/send");
+
+      // Create multipart request
+      var request = http.MultipartRequest('POST', uri);
+
+      // Attach file with key "file"
+      request.files.add(
+        await http.MultipartFile.fromPath('file', imageFile.path),
+      );
+
+      // Send request
+      var response = await request.send();
+
+      // Convert response to string
+      var responseBody = await response.stream.bytesToString();
+      var jsonData = json.decode(responseBody);
+
+      print("API Response: $jsonData");
+
+      // Extract status (legal / illegal)
+      if (jsonData["predictions"] != null &&
+          jsonData["predictions"]["detections"] != null &&
+          jsonData["predictions"]["detections"].isNotEmpty) {
+        String detectedClass =
+            jsonData["predictions"]["detections"][0]["class"] ?? "unknown";
+        return detectedClass; // will return "legal" or "illegal"
+      }
+
+      return "unknown";
+    } catch (e) {
+      print("Error uploading image: $e");
+      return "error";
+    }
+  }
+
+  Future<String> checkLocation(double latitude, double longitude) async {
   try {
-    // API endpoint
-    var uri = Uri.parse("https://2e187309b292.ngrok-free.app/send");
+    var uri = Uri.parse("https://2e187309b292.ngrok-free.app/location");
 
-    // Create multipart request
-    var request = http.MultipartRequest('POST', uri);
+    var body = jsonEncode({
+      "latitude": latitude,
+      "longitude": longitude,
+    });
 
-    // Attach file with key "file"
-    request.files.add(
-      await http.MultipartFile.fromPath('file', imageFile.path),
+    var response = await http.post(
+      uri,
+      headers: {"Content-Type": "application/json"},
+      body: body,
     );
 
-    // Send request
-    var response = await request.send();
-
-    // Convert response to string
-    var responseBody = await response.stream.bytesToString();
-    var jsonData = json.decode(responseBody);
-
-    print("API Response: $jsonData");
-
-    // Extract status (legal / illegal)
-    if (jsonData["predictions"] != null &&
-        jsonData["predictions"]["detections"] != null &&
-        jsonData["predictions"]["detections"].isNotEmpty) {
-      String detectedClass =
-          jsonData["predictions"]["detections"][0]["class"] ?? "unknown";
-      return detectedClass; // will return "legal" or "illegal"
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      return jsonData["status"]; // only return status string
+    } else {
+      return "error";
     }
-
-    return "unknown";
   } catch (e) {
-    print("Error uploading image: $e");
     return "error";
   }
-}
-}
+}}
